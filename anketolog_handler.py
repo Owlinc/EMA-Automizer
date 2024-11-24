@@ -32,9 +32,10 @@ def get_answers(survey_name, survey_id):
         if not (pd.to_datetime(finish_date, unit='s') >= DATETIME_START) and (pd.to_datetime(finish_date, unit='s') <= DATETIME_END):
             continue
         # 6. Записываем ID, название опроса и дату ответа в БД
-        if not "params" in answer["collector"]:
+        if not "additional_params" in answer:
+
             continue
-        user_id = answer["collector"]["params"][0]["value"]
+        user_id = answer["additional_params"][0]["value"]
         finished_date = pd.to_datetime(
             datetime.datetime.fromtimestamp(answer['finish_date']),
             format='%d.%m.%y %H:%M:%S')

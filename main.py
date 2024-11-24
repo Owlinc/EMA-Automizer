@@ -1,3 +1,4 @@
+# 0. Импорты
 from samply_handler import *
 from anketolog_handler import *
 from common_handler import *
@@ -15,7 +16,7 @@ merged_df = match_beeps_date(period_prompts, period_answers)
 summarized_df = summarize_activity(merged_df)
 
 # 5. Форматируем таблички и экспортируем в .xlsx
-export_results(merged_df, summarized_df, period_prompts)
+export_results(summarized_df, merged_df, period_prompts)
 
 # 6. Информируем о выполнении скрипта
 print("Работа заверешна. Файлы сформированы!")
