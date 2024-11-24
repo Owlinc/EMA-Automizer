@@ -94,8 +94,14 @@ def export_results(summarized_df, merged_df, file_name="summary.xlsx"):
             if r_idx == 1 or c_idx == 1:
                 cell.font = Font(bold=True)
 
-            # Окрашиваем ячейки на основе значений (от 0 - красный до 1 - зеленый)
+            # Окрашиваем ячейки на основе значений (от 0 - красный до 1 - зеленый) + Округление до двух знаков после запятой
             elif isinstance(value, (int, float)) and 0 <= value <= 1:
+
+                # Округялем до двух знаков после запятой
+                truncated_value = np.floor(value * 100) / 100
+                cell.value = truncated_value
+
+                # Окрашиваем ячейки
                 green = int(value * 255)
                 red = 255 - green
                 cell.fill = PatternFill(
